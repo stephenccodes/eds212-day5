@@ -1,0 +1,57 @@
+---
+title: "eds212-day5"
+author: "Stephen Carroll"
+format: html
+editor_options: 
+  chunk_output_type: console
+execute: 
+  warning: false
+---
+
+```{r}
+#| message: false
+# load libraries ----
+library(tidyverse)
+```
+```{r}
+#| include: false
+# do some data exploration on the starwars df ----
+head(starwars, n = 10)
+tail(starwars)
+dim(starwars)
+
+
+
+```
+
+```{r}
+#| echo: false
+# create a ggplot(scatterplot) of character mass (y-axis) and height (x-axis)
+ggplot(data = starwars, aes(x = height, y = mass))+
+  geom_point(aes(color = mass)) +
+  labs(x = "Height (cm)",
+       y = "Mass (kg)",
+       title = "Star Wars Chart")
+```
+
+```{r}
+# create a histogram of character heights
+# update the fill color(fill) to purple and the outside border line (color)of each histogram bin to orange
+# update your code chunk options so that only your code and output graph appear in the rendered doc (no warnings or messages)
+#| echo: false
+#| fig-cap: "This is my figure caption"
+#| fig-alt: "This is some alt text"
+ggplot(data = starwars, aes(x = height))+
+  geom_histogram(color = "orange", fill = "purple")+
+  labs(x = "Height (cm)",
+         y = "Count")
+```
+
+```{r}
+sw_height_mean <- round(x = mean(starwars$height, na.rm = TRUE), digits = 3)
+
+```
+
+
+The mean height of all starwars characters is `r sw_height_mean`
+
